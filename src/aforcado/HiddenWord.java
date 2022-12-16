@@ -8,6 +8,7 @@ package aforcado;
  * Clase que implementa a palabra a adiviñar coa que traballaremos no xogo, e 
  * resolverá todo o traballo de manter as letras acertadas, mostrar a palabra 
  * ocultando as letras non acertadas, e comprobar se unha letra forma parte da palabra. 
+ * 
  * @author haleacu
  */
 public class HiddenWord {
