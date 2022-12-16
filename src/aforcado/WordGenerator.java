@@ -5,7 +5,8 @@
 package aforcado;
 
 /**
- *
+ * Clase que genera la palabra a adivinar
+ * 
  * @author haleacu
  */
 public class WordGenerator {

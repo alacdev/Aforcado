@@ -5,9 +5,9 @@
 package aforcado;
 
 /**
- * Clase que implementa a palabra a adiviñar coa que traballaremos no xogo, e 
- * resolverá todo o traballo de manter as letras acertadas, mostrar a palabra 
- * ocultando as letras non acertadas, e comprobar se unha letra forma parte da palabra. 
+ * Clase que implementa la palabra a adivinar con la que trabajaremos en el juego. 
+ * Resolverá todo el trabajo de mantener las letras acertadas, mostrar la palabra 
+ * ocultando las letras no acertadas, y comprobar si una letra forma parte de la palabra. 
  * 
  * @author haleacu
  */
@@ -22,9 +22,9 @@ public class HiddenWord {
     }
 
     /**
-     * Comproba se un caracter aparece na lista de caracteres da palabra,
-     * marcando todas as aparicións dese caracter como acertadas. Se o caracter
-     * aparece na palabra devolve true, se non devolve false.
+     * Comprueba si un carácter aparece en la lista de caracteres de la palabra,
+     * marcando todas las aparicones de ese carácter como acertadas. Si el carácter
+     * aparece en la palabra devuele true, si no devuelve false.
      *
      * @param c
      * @return
@@ -41,7 +41,7 @@ public class HiddenWord {
     }
 
     /**
-     * Devolve a palabra substituíndo os caracteres non acertados por guións.
+     * Devuelve la palabra sustituyendo los caracteres no acertados por guiones.
      *
      * @return
      */
@@ -59,9 +59,9 @@ public class HiddenWord {
     }
 
     /**
-     * Devolve a palabra completa, incluíndo os caracteres non acertados. Este
-     * método o usaremos para mostrar ao usuario ao final do xogo, se perde, cal
-     * era a palabra oculta.
+     * Devuelve la palabra completa, incluyendo los caracteres no acertados. Este
+     * método lo usaremos para mostrar al usuario al final del juego, si pierde,
+     * cual era la palabra oculta.
      *
      * @return
      */

@@ -7,10 +7,10 @@ package aforcado;
 import java.util.ArrayList;
 
 /**
- * Clase que implementa todo o estado dunha partida ao aforcado. Manterá unha 
- * referencia a un obxecto da clase HiddenWord coa palabra oculta a adiviñar, e 
- * tamén irá almacenando as letras introducidas polo usuario que non estean na 
- * palabra, para irllas mostrando e que non as introduza de novo.
+ * Clase que implementa todo el estado de una partida al ahorcado. Mantendrá una 
+ * referencia a un objeco de la clase HiddenWord con la palabra oculta a 
+ * adivinar, y también irá almacenando las letras introducidas por el usuario 
+ * que no esten en la palabra, para írselas mostrando y que no las introduzca de nuevo.
  * 
  * @author haleacu
  */
@@ -23,13 +23,13 @@ public class HangMan {
     private ArrayList <Character> fails;
     
     public HangMan(String word) {
-        // Inicializacion
+        // Inicialización
         hiddenWord = new HiddenWord(word);
         fails = new ArrayList();
     }
     
     /**
-     * Obtén a lista de caracteres fallados acumulados na partida.
+     * Obtiene la lista de caracteres fallados acumulados en la partida.
      * @return
      */
     public ArrayList <Character> getFails() {
@@ -38,8 +38,8 @@ public class HangMan {
     }
     
     /**
-     * Obtén un String coa lista de caracteres fallados acumulados, separados 
-     * por espazos en branco.
+     * Obtiene un String con la lista de caracteres fallados acumulados, 
+     * separados por espacios en blanco.
      * @return
      */
     public String getStringFails() {
@@ -54,7 +54,7 @@ public class HangMan {
     }
     
     /**
-     * Devolve a palabra oculta pero poñendo un guión nas letras non acertadas.
+     * Devuelve la palabra oculta pero poniendo un guión en las letras no acertadas.
      * @return
      */
     public String showHiddenWord() {
@@ -63,7 +63,7 @@ public class HangMan {
     }
     
     /**
-     * Devolve a palabra oculta mostrando todas as súas letras.
+     * Devolve la palabra oculta mostrando todas sus letras.
      * @return
      */
     public String showFullWord() {
@@ -72,9 +72,9 @@ public class HangMan {
     }
     
     /**
-     * Proba a ver se o caracter indicado forma parte da palabra oculta.Se 
-     * está, márcanse todas as súas aparicións como letras acertadas; se 
-     * non está engádese o caracter na lista de fallos acumulados na partida.
+     * Prueba a ver si el carácter indicado forma parte de la palabra oculta.Si 
+     * está, se marcan todas sus apariciones como letras acertadas; si no se 
+     * añade el carácter en la lista de fallos acumulados en la partida.
      * @param c
      */
     public void tryChar(char c) {
@@ -85,8 +85,8 @@ public class HangMan {
     }
     
     /**
-     * Comproba se rematou a partida, ben porque se chegou ao límite de fallos 
-     * ou ben porque se adiviñou toda a palabra oculta.
+     * Comprueba que se acabó la partida, bien porque se llegó al límite de 
+     * fallos o bien porque se adivinó toda la palabra oculta
      * @return devolvemos true en caso de que el método maxFailsExceeded y/o 
      *         isVisible de la clase HiddenWord sean true
      */
@@ -96,8 +96,8 @@ public class HangMan {
     }
     
     /**
-     * Comproba se se chegou ao límite de fallos permitidos. Permitiranos saber 
-     * se o usuario gañou ou perdeu a partida.
+     * Comprueba si se llegó al límite de fallos permitidos. Nos permitirá  
+     * saber si el usuario ganó o perdió la partida.
      * @return devolvemos true en caso de que se haya excedido el nº de fallos
      */
     public boolean maxFailsExceeded() {
