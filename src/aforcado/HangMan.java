@@ -4,10 +4,13 @@
  */
 package aforcado;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author haleacu
  */
 public class HangMan {
-    
+    public final int MAX_FAILS = 6;
+    ArrayList fails = new ArrayList();
 }
