@@ -75,9 +75,9 @@ public class HiddenWord {
     }
 
     /**
-     * Indica si la palabra é totalmente visible, é dicir, se todos os caracteres
-     * están xa acertados. Este método permitiranos saber se o usuario adiviñou
-     * a palabra e polo tanto gañou a a partida.
+     * Indica si la palabra es totalmente visible, es decir, si todos los caracteres
+     * están acertados. Este método nos permitirá saber si el usuario adivinó la
+     * palabra y por lo tanto ganó la partida.
      *
      * @return
      */
