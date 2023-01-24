@@ -6,9 +6,19 @@ package aforcado;
 
 /**
  * Clase que genera la palabra a adivinar
- * 
+ *
  * @author haleacu
  */
 public class WordGenerator {
-    
+
+    private final String WORDLIST[] = {"pata", "platano", "prueba", "resumen", "grueso"};
+
+    /**
+     * Clase que escoge una palabra del array
+     * @return
+     */
+    public String generateWord() {
+        int value = new java.util.Random().nextInt(WORDLIST.length);
+        return WORDLIST[value];
+    }
 }
