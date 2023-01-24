@@ -11,7 +11,7 @@ package aforcado;
  */
 public class WordGenerator {
 
-    private final String WORDLIST[] = {"pata", "platano", "prueba", "resumen", "grueso"};
+    private final String WORDLIST[] = {"messi", "cristiano", "joao", "havertz", "mudryk"};
 
     /**
      * Clase que escoge una palabra del array
