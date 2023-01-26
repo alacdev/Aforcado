@@ -13,21 +13,47 @@ import java.util.Scanner;
 public class MenuGenerator {
 
     private HangMan Hangman;
-    
+
     /**
      * Muestra el menú inicial que permite generar la palabra a adivinar.
+     *
      * @return
      */
-    private String showInitMenu(){
-        WordGenerator init = new WordGenerator();
-        init.generateWord();
-        return null;
+    private String showInitMenu() throws GenerateWordException {
+
+        WordGenerator wg;
+        do {
+            System.out.println("Escoge el modo de juego");
+            System.out.println("Pulse 1 si quiere coger una palabra aleatoria del Array");
+            System.out.println("Pulse 2 si quiere que otro jugador elija la palabra");
+            Scanner scan = new Scanner(System.in);
+            int gameMode = scan.nextInt();
+            scan.nextLine();
+                    
+
+            switch (gameMode) {
+                case 1:
+                    wg = new ArrayWordGenerator();
+                    break;
+                case 2:
+                    wg = new KeyboardWordGenerator();
+                    break;
+                default:
+                    wg = null;
+                    System.out.println("Opción incorrecta");
+                    break;
+
+            }
+        } while (wg == null);
+        String word = wg.generateWord();
+        return word;
+
     }
-    
+
     /**
-    * Muestra el menú de juego, que va pidiendo las letras y mostrando los aciertos
-    * y los fallos. El juego acaba cuando cuando se aciertan todas las letras o se 
-    * llega al límite de fallos.
+     * Muestra el menú de juego, que va pidiendo las letras y mostrando los
+     * aciertos y los fallos. El juego acaba cuando cuando se aciertan todas las
+     * letras o se llega al límite de fallos.
      */
     private void showGameMenu() {
         Scanner scan = new Scanner(System.in);
@@ -40,9 +66,11 @@ public class MenuGenerator {
         }
         System.out.println(Hangman.showFullWord());
     }
-    
+
     /**
-     * Pregunta al usuario si quiere jugar otra partida o salir de la aplicación.
+     * Pregunta al usuario si quiere jugar otra partida o salir de la
+     * aplicación.
+     *
      * @return
      */
     private boolean showExitMenu() {
@@ -53,17 +81,21 @@ public class MenuGenerator {
     }
 
     /**
-     * Método main que crea un objeto de la clase MenuGenerator() y otro de 
-     * la clase WordGenretaor() y ejecuta el programa
+     * Método main que crea un objeto de la clase MenuGenerator() y otro de la
+     * clase WordGenretaor() y ejecuta el programa
+     *
      * @param args
      */
     public static void main(String[] args) {
         MenuGenerator menuGenerator = new MenuGenerator();
-        WordGenerator wordGenerator = new WordGenerator();
-
+        
         do {
-            menuGenerator.Hangman = new HangMan(wordGenerator.generateWord());
-            menuGenerator.showGameMenu();
+            try {
+                menuGenerator.Hangman = new HangMan(menuGenerator.showInitMenu());
+                menuGenerator.showGameMenu();
+            } catch (GenerateWordException e) {
+                
+            }
         } while (!menuGenerator.showExitMenu());
     }
 }

@@ -1,24 +1,15 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package aforcado;
 
 /**
- * Clase que genera la palabra a adivinar
  *
  * @author haleacu
  */
-public class WordGenerator {
+public interface WordGenerator {
 
-    private final String WORDLIST[] = {"messi", "cristiano", "joao", "havertz", "mudryk"};
+    public String generateWord() throws GenerateWordException;
 
-    /**
-     * Clase que escoge una palabra del array
-     * @return
-     */
-    public String generateWord() {
-        int value = new java.util.Random().nextInt(WORDLIST.length);
-        return WORDLIST[value];
-    }
 }
