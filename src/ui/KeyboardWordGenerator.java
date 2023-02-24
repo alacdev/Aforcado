@@ -22,9 +22,19 @@ public class KeyboardWordGenerator implements WordGenerator {
     public String generateWord() throws GenerateWordException {
         //La llamada System.console solo funciona desde la consola, desde el IDE
         //devolverá null.
-        char[] chars = System.console().readPassword();
-        String word = new String(chars);
-        return word;
+        Scanner scan = new Scanner(System.in);
+        String word;
+        System.out.println("Inserte la palabra para jugar");
+        if (System.console() != null) {
+            char[] chars = System.console().readPassword();
+            word = new String(chars);
+            return word;
+        } else {
+            char[] chars = scan.nextLine().toCharArray();
+            word = new String(chars);
+            return word;
+        }
+
     }
 
 }
