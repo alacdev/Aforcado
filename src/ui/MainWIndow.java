@@ -7,6 +7,7 @@ package ui;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static ui.GUIKeyboardWordGenerator.onlyLetters;
 
 /**
  *
@@ -56,6 +57,11 @@ public class MainWIndow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("El ahorcado");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         newGameButton.setText("Nueva Partida");
         newGameButton.addActionListener(new java.awt.event.ActionListener() {
@@ -65,6 +71,11 @@ public class MainWIndow extends javax.swing.JFrame {
         });
 
         exitButton.setText("Salir");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
 
         hiddenWordLabel.setText("Palabra a adivinar:");
 
@@ -73,6 +84,16 @@ public class MainWIndow extends javax.swing.JFrame {
         introCharLabel.setText("Introduce una letra:");
 
         tryButton.setText("Probar");
+        tryButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tryButtonMouseClicked(evt);
+            }
+        });
+        tryButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tryButtonKeyPressed(evt);
+            }
+        });
 
         TitleLabel.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
         TitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -89,11 +110,22 @@ public class MainWIndow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TitleLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(newGameButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(exitButton)
-                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(newGameButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(exitButton)
+                                .addGap(70, 70, 70))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(hiddenWordLabel)
+                                    .addComponent(failedCharsLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(failedCharsWhiteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(hiddenWordWhiteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(introCharLabel)
@@ -101,19 +133,7 @@ public class MainWIndow extends javax.swing.JFrame {
                         .addComponent(introCharTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(tryButton)
-                        .addGap(228, 228, 228))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(hiddenWordLabel)
-                                .addGap(12, 12, 12))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(failedCharsLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(failedCharsWhiteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hiddenWordWhiteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(189, 189, 189))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {failedCharsWhiteLabel, hiddenWordWhiteLabel});
@@ -160,19 +180,35 @@ public class MainWIndow extends javax.swing.JFrame {
         String answer = (String) JOptionPane.showInputDialog(this, "Selecciona un modo de juego:", "Modo de juego",
                 JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
         if (answer.equals(opciones[0])) {
-            wordG = new ArrayWordGenerator();
+             wordG = new ArrayWordGenerator();
         } else if (answer.equals(opciones[1])) {
             wordG = new GUIKeyboardWordGenerator();
-        }
-
+        }        
         try {
             hiddenWordWhiteLabel.setText(wordG.generateWord());
         } catch (GenerateWordException ex) {
             Logger.getLogger(MainWIndow.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
     }//GEN-LAST:event_newGameButtonActionPerformed
+private void tryChar() {
+    
+}
+    private void tryButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tryButtonKeyPressed
+        
+    }//GEN-LAST:event_tryButtonKeyPressed
+
+    private void tryButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tryButtonMouseClicked
+        String triedLetter = introCharTextField.getText();
+        
+    }//GEN-LAST:event_tryButtonMouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     /**
      * @param args the command line arguments
