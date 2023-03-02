@@ -5,7 +5,6 @@
 package ui;
 
 import java.awt.GridLayout;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -37,26 +36,22 @@ public class GUIKeyboardWordGenerator implements WordGenerator {
         //pero si usas getPassword se guarda como un char array y no se mantiene en la memoria
         //  String word = pass.getText();
         if (!onlyLetters(word)) {
-                JOptionPane.showMessageDialog(panel, "La palabra solo puede contener letras de la 'a' a la 'z'",
+                JOptionPane.showMessageDialog(panel, "La palabra solo puede contener letras minúsculas de la 'a' a la 'z'",
                         "Palabra incorrecta", JOptionPane.INFORMATION_MESSAGE);
             }         }
         while (onlyLetters(word) == false);      
         
 
-        return word.toLowerCase();
+        return word;
     }
 
+    /**
+     * Método que verifica que el usuario introduzca solo letras
+     * @param s
+     * @return
+     */
     public static boolean onlyLetters(String s) {
-        //        for (int i = 0; i < po.length(); i++) {
-        //            char caracter = po.toUpperCase().charAt(i);
-        //            int valorASCII = (int) caracter;
-        //            if (valorASCII != 165 && (valorASCII < 65 || valorASCII > 90)) {
-        //                return false;
-        //            }
-        //        }
-   
-        return s != null && s.matches("^[a-zA-Z]*$");
-    
+        return s != null && s.matches("^[a-z]*$");
 
       
     }

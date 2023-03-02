@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class MenuGenerator {
 
-    private HangMan Hangman;
+    private HangMan hangman;
 
     /**
      * Muestra el menú inicial que permite generar la palabra a adivinar.
@@ -58,14 +58,14 @@ public class MenuGenerator {
      */
     private void showGameMenu() {
         Scanner scan = new Scanner(System.in);
-        while (!Hangman.isGameOver()) {
+        while (!hangman.isGameOver()) {
             System.out.print("Introduce una letra: ");
             char userInput = scan.next().charAt(0);
-            Hangman.tryChar(userInput);
-            System.out.println(Hangman.getStringFails());
-            System.out.println(Hangman.showHiddenWord());
+            hangman.tryChar(userInput);
+            System.out.println(hangman.getStringFails());
+            System.out.println(hangman.showHiddenWord());
         }
-        System.out.println(Hangman.showFullWord());
+        System.out.println(hangman.showFullWord());
     }
 
     /**
@@ -92,7 +92,7 @@ public class MenuGenerator {
         
         do {
             try {
-                menuGenerator.Hangman = new HangMan(menuGenerator.showInitMenu());
+                menuGenerator.hangman = new HangMan(menuGenerator.showInitMenu());
                 menuGenerator.showGameMenu();
             } catch (GenerateWordException e) {
                 

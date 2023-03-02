@@ -34,7 +34,8 @@ public class HiddenWord {
         boolean isCharInWord = false;
         for (int i = 0; i < characters.length; i++) {
             if (c == characters[i]) {
-                isCharInWord = hits[i] = true;
+                hits[i] = true;
+                isCharInWord = true;
             }
         }
         return isCharInWord;
